@@ -1,0 +1,267 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IP4Less | Patent creator</title>
+    <link rel="stylesheet" href="bootstrap-grid.min.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap");
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      .container {
+        width: auto;
+      }
+      @media (min-width: 1200px) {
+        .container,
+        .container-lg,
+        .container-md,
+        .container-sm,
+        .container-xl {
+          max-width: 1200px;
+        }
+      }
+      .btn {
+        font-family: Roboto, sans-serif;
+        font-size: 14px;
+        background-color: #b51a34;
+        color: #fff;
+        padding: 12px 30px;
+        border: solid 2px #fff;
+        border-radius: 10px;
+        transition: 500ms;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .btn.dark {
+        background-color: #555555;
+        color: #fff;
+      }
+
+      .btn.blue {
+        background-color: #1a80b5;
+        color: #fff;
+        border: solid 2px #1a80b5;
+      }
+
+      .btn:hover {
+        color: #fff;
+        background-color: #87041a;
+      }
+      .btn.blue:hover {
+        color: #fff;
+        background-color: #000;
+      }
+      .btn:disabled,
+      .btn[disabled] {
+        cursor: not-allowed;
+        pointer-events: none;
+        background-color: #cccccc;
+        color: #666666;
+      }
+      h1 {
+        font-weight: bold;
+        font-family: "Gotham Black", Playfair, sans-serif;
+        font-size: 48px;
+        margin-bottom: 0.5em;
+      }
+      h2 {
+        font-size: 30px;
+        font-family: Nunito, sans-serif;
+        margin-bottom: 0.5em;
+      }
+      h3 {
+        font-size: 24px;
+        font-family: Nunito, sans-serif;
+        margin-bottom: 0.5em;
+      }
+      p {
+        font-family: Nunito, sans-serif;
+      }
+      .responsive {
+        width: 100%;
+        /* max-width: 400px;  */
+        height: auto;
+      }
+      .image-frame {
+        background-color: rgb(210, 210, 210);
+        border-radius: 60px;
+        max-height: 400px;
+        overflow: hidden;
+      }
+      input {
+        display: block;
+        border: 2px solid #ccc;
+        width: 100%;
+        padding: 10px;
+        /* margin: 10px auto; */
+        border-radius: 5px;
+        font-family: Nunito, sans-serif;
+      }
+      textarea {
+        width: 100%;
+        padding: 10px;
+        resize: vertical;
+        font-family: Nunito, sans-serif;
+      }
+      .h-100 {
+        height: 100%;
+      }
+      .h-75 {
+        height: 75%;
+      }
+      .h-80 {
+        height: 80%;
+      }
+      .navbar {
+        overflow: hidden;
+        background-color: #b51a34;
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+
+      .lds-dual-ring {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        margin: auto;
+      }
+      .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid #b51a34;
+        border-color: #b51a34 transparent #b51a34 transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+        margin: auto;
+      }
+      @keyframes lds-dual-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="container py-0">
+        <div class="d-flex justify-content-between *mt-4 align-items-center">
+          <h2 class="mx-2" style="color: white; text-align: center">IP4Less</h2>
+          <div class="d-none d-md-block"></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-4 *h-100" style="padding-top: 100px">
+      <div class="row m-2 *align-items-center mb-4 m-md-0 h-80">
+        <div class="col-lg px-2 px-md-5">
+          <h3>Keywords</h3>
+          <div>
+            <textarea
+              rows="5"
+              type="text"
+              name="keywords"
+              placeholder="Enter Keywords"
+              id="keywords"
+            ></textarea>
+            <p class="m-0 mt-2">Please enter each keyword in a new line.</p>
+          </div>
+          <br />
+          <h3>Description</h3>
+          <div>
+            <textarea
+              rows="7"
+              type="text"
+              name="description"
+              placeholder="Enter Description"
+              id="description"
+            ></textarea>
+          </div>
+          <br />
+          <br />
+          <div>
+            <button id="process" type="button" class="btn">Process</button>
+            <button id="reset" type="button" class="btn dark">Reset</button>
+          </div>
+          <br />
+        </div>
+
+        <div
+          class="col-lg px-4 px-md-5 h-100"
+          style="border: 2px solid black; overflow: scroll; text-align: center"
+        >
+          <h3>Result</h3>
+          <p id="result" style="white-space: pre-wrap; text-align: left"></p>
+          <div class="lds-dual-ring" id="loader" style="display: none"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var processButton = document.getElementById("process");
+      var loader = document.getElementById("loader");
+      processButton.addEventListener("click", Process);
+      function Process() {
+        // Storing Field Values In Variables
+        var keywords = document.getElementById("keywords").value;
+        var description = document.getElementById("description").value;
+        var result = document.getElementById("result");
+        // Conditions
+        if (keywords != "") {
+          document.getElementById("result").innerHTML = null;
+          loader.style.display = "block";
+          processButton.innerHTML = "Loading...";
+          processButton.disabled = true;
+          fetch("https://ip4less.com/app/generate", {
+            method: "POST",
+            body: JSON.stringify({
+              input_text:
+                description != "" ? keywords + "\n" + description : keywords,
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          })
+            .then((response) => {
+              //response.json();
+              if (response.ok) {
+                return response.json();
+              }
+              return Promise.reject(response);
+            })
+            .then((json) => {
+              loader.style.display = "none";
+              document.getElementById("process").innerHTML = "Process";
+              processButton.disabled = false;
+              result.innerHTML = json["output_text"];
+            })
+            .catch((reason) => {
+              loader.style.display = "none";
+              document.getElementById("process").innerHTML = "Process";
+              processButton.disabled = false;
+              console.log(reason);
+              alert("Could NOT get results! Please try again.");
+            });
+        } else {
+          alert("At least one keyword required!");
+        }
+      }
+      document.getElementById("reset").addEventListener("click", Reset);
+      function Reset() {
+        document.getElementById("keywords").value = null;
+        document.getElementById("description").value = null;
+        document.getElementById("result").innerHTML = null;
+      }
+    </script>
+  </body>
+</html>
