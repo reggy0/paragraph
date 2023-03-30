@@ -7,7 +7,7 @@ from happytransformer import HappyGeneration, GENSettings
 # Initializing the flask app
 app = Flask(__name__,template_folder='templates')
 
-happy_gen = HappyGeneration("GPT-NEO", "EleutherAI/gpt-neo-1.3B")
+happy_gen = HappyGeneration("GPT-NEO", "EleutherAI/gpt-neo-125M")
 
 training_cases = """Keywords: Canada, AI, fast
 Output: Canada's AI industry is growing fast. 
